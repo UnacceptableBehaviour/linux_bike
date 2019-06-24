@@ -1,0 +1,5 @@
+# for osx
+.DS_Store
+
+# ignore directory and contents
+/scratch
