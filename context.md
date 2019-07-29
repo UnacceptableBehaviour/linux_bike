@@ -3,15 +3,15 @@
 [AMBER]
 
 ### Contents
-[Current status](#status)\
-[Contents](#contents)\
-[Next steps](#next-steps)\
-[Completed](#completed)\
-[Q's & How To's](#qs--how-tos)\
-    *[Adding tabs to content links](#adding-tabs-to-content-links) \
-    *[Auto generaging TOC](#auto-generaging-toc)\
-[Tips on context doc](#tips)\
-[References](#references)
+1. [Current status](#status)\
+2. [Contents](#contents)\
+3. [Next steps](#next-steps)\
+4. [Completed](#completed)\
+5. [Q's & How To's](#qs--how-tos)\
+    1. [Adding tabs to content links](#adding-tabs-to-content-links) \
+    2. [Auto generaging TOC](#auto-generaging-toc)\
+6. [Tips on context doc](#tips)\
+7. [References](#references)
 
 
 ### Next steps
