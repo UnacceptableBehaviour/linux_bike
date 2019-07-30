@@ -8,12 +8,12 @@
 [Contents](#contents)\
 [Next steps](#next-steps)\
 [Completed](#completed)\
-[Wire up a raspberry pi zero to FONA GPS/Comms module\](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)\
-[AC/DC converter mounting asembly (STL 3d print assmbly, fit)\](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)\
-[Battery casing and assembly (internal cell assembly, STL 3d print casing)\](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)\
-[Battery life tests\](#battery-life-tests)\
-[Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)\](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)\
-[Install os on rpi & make it visible on network, and ssh in.\](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)\
+[Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)\
+[AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)\
+[Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)\
+[Battery life tests](#battery-life-tests)\
+[Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)\
+[Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)\
 [How do I insert a TOC?](#how-do-i-insert-a-toc)\
 [Q's & How To's](#qs--how-tos)\
 [How do I auto generate TOC?](#how-do-i-auto-generate-toc)\
@@ -29,28 +29,28 @@ Get wifi so can us LAN dongle forother things!\
 Add docs and files for completed steps, directory for each?\
 
 ## Completed
-### Wire up a raspberry pi zero to FONA GPS/Comms module\
+### Wire up a raspberry pi zero to FONA GPS/Comms module
 Add wiring diagram and notes on important pins.\
 
-### AC/DC converter mounting asembly (STL 3d print assmbly, fit)\
+### AC/DC converter mounting asembly (STL 3d print assmbly, fit)
 Add mechanical diagram\
 Add sketchup, STL, and gcode files\
 Add image of Prototype mounting\
 
-### Battery casing and assembly (internal cell assembly, STL 3d print casing)\
+### Battery casing and assembly (internal cell assembly, STL 3d print casing)
 Add mechanical diagram\
 Add sketchup, STL, and gcode files\
 Add image of assembly stages\
 Comment possible flaws and potential redisign from prototype v1\
 
-### Battery life tests\
+### Battery life tests
 Basic workings\
 Power consumption per module\
 
-### Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)\
+### Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)
 Intsalling / compiling ruby for SD platform image\
 
-### Install os on rpi & make it visible on network, and ssh in.\
+### Install os on rpi & make it visible on network, and ssh in.
 Doc about setting up the rpi for remote development\
 
 ### How do I insert a TOC?
