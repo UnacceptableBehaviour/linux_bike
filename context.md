@@ -22,6 +22,26 @@
     2. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
 
 
+## Contents
+ [Status: getting FONA hadshake to work](#status-getting-fona-hadshake-to-work)
+ [Contents](#contents)
+ [Next steps](#next-steps)
+ [Completed](#completed)
+     [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
+     [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
+     [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
+     [Battery life tests](#battery-life-tests)
+     [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
+     [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
+     [How do I insert a TOC?](#how-do-i-insert-a-toc)
+ [Q's & How To's](#qs--how-tos)\
+         [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
+ [TIPS](#tips)
+ [REFERENCES](#references)
+     [Markdown cheat sheet](#markdown-cheat-sheet)
+     [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
+
+
 ## Next steps
 Get serial comms talking and FONA unit response\
 Get wifi so can us LAN dongle forother things!\
