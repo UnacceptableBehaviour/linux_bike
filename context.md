@@ -7,45 +7,26 @@
 2. [Contents](#contents)
 3. [Next steps](#next-steps)
 4. [Completed](#completed)
-    1. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
-    2. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
-    3. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
-    4. [Battery life tests](#battery-life-tests)
-    5. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
-    6. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
-    7. [How do I insert a TOC?](#how-do-i-insert-a-toc)
+	1. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
+	2. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
+	3. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
+	4. [Battery life tests](#battery-life-tests)
+	5. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
+	6. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
+	7. [How do I insert a TOC?](#how-do-i-insert-a-toc)
+	8. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
 1. [Q's & How To's](#qs--how-tos)
-        1. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
-1. [TIPS](#tips)
-2. [REFERENCES](#references)
-    1. [Markdown cheat sheet](#markdown-cheat-sheet)
-    2. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
-
-
-## Contents
-1. [Status: getting FONA hadshake to work](#status-getting-fona-hadshake-to-work)
-1. [Contents](#contents)
-1. [Next steps](#next-steps)
-1. [Completed](#completed)
-    1. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
-    1. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
-    1. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
-    1. [Battery life tests](#battery-life-tests)
-    1. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
-    1. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
-    1. [How do I insert a TOC?](#how-do-i-insert-a-toc)
-1. [Q's & How To's](#qs--how-tos)\
-        1. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
-1. [TIPS](#tips)
-1. [REFERENCES](#references)
-    1. [Markdown cheat sheet](#markdown-cheat-sheet)
-    1. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
+2. [TIPS](#tips)
+3. [REFERENCES](#references)
+	1. [Markdown cheat sheet](#markdown-cheat-sheet)
+	2. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
 
 
 ## Next steps
 Get serial comms talking and FONA unit response\
-Get wifi so can us LAN dongle forother things!\
+Get wifi dongle working so can us LAN dongle for other things!\
 Add docs and files for completed steps, directory for each?\
+Ugrade TOC script so it inserts TOC back into .md file and saves new version into scratch folder
 
 ## Completed
 ### Wire up a raspberry pi zero to FONA GPS/Comms module
@@ -89,16 +70,28 @@ To create a TOC, create a numbered list of links. Tab in next level with new num
 3. [Next steps](#next-steps)\
 4. [Completed](#completed)\
 5. [Q's & How To's](#qs--how-tos)\
-1. [Adding tabs to content links](#adding-tabs-to-content-links) \
-2. [Auto generaging TOC](#auto-generaging-toc)\
+    1. [Adding tabs to content links](#adding-tabs-to-content-links) \
+    2. [Auto generaging TOC](#auto-generaging-toc)\
 6. [Tips on context doc](#tips)\
 7. [References](#references)
 ```
 
+### How do I auto generate TOC?
+```
+$ cd /lang/linux_mix/linux_bike             # cd into repo - same dir as the README.md file
+                                            # or context.md file
+$ spe                                       # venv for python scrips
+                                            # alias spe='. /repos/python_scripts/venv/bin/activate'   
+$ create_TOC_for_md.py                      # run script
+                                            # paste output into .md file TOC
+```
+
+
 
 ## Q's & How To's
-#### How do I auto generate TOC?
-REF: https://github.com/isaacs/github/issues/215/
+
+
+
 
 
 ## TIPS
