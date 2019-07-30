@@ -30,16 +30,28 @@ Add docs and files for completed steps, directory for each?
 
 ## Completed
 ### Wire up a raspberry pi zero to FONA GPS/Comms module\
+Add wiring diagram and notes on important pins.
 
 ### AC/DC converter mounting asembly (STL 3d print assmbly, fit)\
+Add mechanical diagram
+Add sketchup, STL, and gcode files
+Add image of Prototype mounting
 
 ### Battery casing and assembly (internal cell assembly, STL 3d print casing)\
+Add mechanical diagram
+Add sketchup, STL, and gcode files
+Add image of assembly stages
+Comment possible flaws and potential redisign from prototype v1
 
 ### Battery life tests\
+Basic workings
+Power consumption per module
 
 ### Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)\
+Intsalling / compiling ruby for SD platform image
 
 ### Install os on rpi & make it visible on network, and ssh in.\
+Doc about setting up the rpi for remote development
 
 ### How do I insert a TOC?
 To creat a link to a chapter in MD:
@@ -49,7 +61,7 @@ To creat a link to a chapter in MD:
 ```
 
 The text-from-title is the the text from the title downcased, with spaces replaced with a hyphen '-' and non alphanumeric characters removed. So "Q's & How To's" becomes '#qs--how-tos'
-The '\' at the end of the line is same as <br> or CRLF. (New line)
+The '\\' at the end of the line is same as <br> or CRLF. (New line)
 
 To create a TOC, create a numbered list of links. Tab in next level with new numbers.
 ```
