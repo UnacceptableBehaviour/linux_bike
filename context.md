@@ -1,5 +1,5 @@
-# context
-## status: getting FONA hadshake to work
+# Context
+## Status: getting FONA hadshake to work
 [AMBER]
 
 ## Contents
