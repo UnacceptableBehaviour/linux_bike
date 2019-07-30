@@ -23,23 +23,23 @@
 
 
 ## Contents
- [Status: getting FONA hadshake to work](#status-getting-fona-hadshake-to-work)
- [Contents](#contents)
- [Next steps](#next-steps)
- [Completed](#completed)
-     [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
-     [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
-     [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
-     [Battery life tests](#battery-life-tests)
-     [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
-     [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
-     [How do I insert a TOC?](#how-do-i-insert-a-toc)
- [Q's & How To's](#qs--how-tos)\
-         [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
- [TIPS](#tips)
- [REFERENCES](#references)
-     [Markdown cheat sheet](#markdown-cheat-sheet)
-     [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
+1. [Status: getting FONA hadshake to work](#status-getting-fona-hadshake-to-work)
+1. [Contents](#contents)
+1. [Next steps](#next-steps)
+1. [Completed](#completed)
+    1. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
+    1. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
+    1. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
+    1. [Battery life tests](#battery-life-tests)
+    1. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
+    1. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
+    1. [How do I insert a TOC?](#how-do-i-insert-a-toc)
+1. [Q's & How To's](#qs--how-tos)\
+        1. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
+1. [TIPS](#tips)
+1. [REFERENCES](#references)
+    1. [Markdown cheat sheet](#markdown-cheat-sheet)
+    1. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
 
 
 ## Next steps
