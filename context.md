@@ -25,6 +25,7 @@
 
 ## Next steps
 Get serial comms talking and FONA unit response\
+Populate this repo with work info about completed\
 Get wifi dongle working so can us LAN dongle for other things!\
 Add docs and files for completed steps, directory for each?\
 Ugrade TOC script so it inserts TOC back into .md file and saves new version into scratch folder
