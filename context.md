@@ -13,11 +13,12 @@
 	4. [Battery life tests](#battery-life-tests)
 	5. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
 	6. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
-	7. [How do I insert a TOC?](#how-do-i-insert-a-toc)
-	8. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
-1. [Q's & How To's](#qs--how-tos)
-2. [TIPS](#tips)
-3. [REFERENCES](#references)
+5. [How To's](#how-tos)
+	1. [How do I insert a TOC?](#how-do-i-insert-a-toc)
+	2. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
+6. [Q's & Barriers](#qs--barriers)
+7. [TIPS](#tips)
+8. [REFERENCES](#references)
 	1. [Markdown cheat sheet](#markdown-cheat-sheet)
 	2. [GFM - Git Flavoured Markdown](#gfm--git-flavoured-markdown)
 
@@ -53,6 +54,8 @@ Intsalling / compiling ruby for SD platform image\
 ### Install os on rpi & make it visible on network, and ssh in.
 Doc about setting up the rpi for remote development\
 
+
+## How To's
 ### How do I insert a TOC?
 To creat a link to a chapter in MD:
 ```
@@ -88,7 +91,7 @@ $ create_TOC_for_md.py                      # run script
 
 
 
-## Q's & How To's
+## Q's & Barriers
 
 
 
