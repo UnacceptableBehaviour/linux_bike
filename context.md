@@ -1,18 +1,19 @@
 # Context
-## Status: getting FONA hadshake to work
+## Status: Initialise FONA get SOC status, network status etc
 [AMBER]
 
 ## Contents
-1. [Status: getting FONA hadshake to work](#status-getting-fona-hadshake-to-work)
+1. [Status: Initialise FONA get SOC status, network status etc](#status-initialise-fona-get-soc-status-network-status-etc)
 2. [Contents](#contents)
 3. [Next steps](#next-steps)
 4. [Completed](#completed)
-	1. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
-	2. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
-	3. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
-	4. [Battery life tests](#battery-life-tests)
-	5. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
-	6. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
+	1. [Get serial comms talking and FONA unit response\](#get-serial-comms-talking-and-fona-unit-response)
+	2. [Wire up a raspberry pi zero to FONA GPS/Comms module](#wire-up-a-raspberry-pi-zero-to-fona-gpscomms-module)
+	3. [AC/DC converter mounting asembly (STL 3d print assmbly, fit)](#acdc-converter-mounting-asembly-stl-3d-print-assmbly-fit)
+	4. [Battery casing and assembly (internal cell assembly, STL 3d print casing)](#battery-casing-and-assembly-internal-cell-assembly-stl-3d-print-casing)
+	5. [Battery life tests](#battery-life-tests)
+	6. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
+	7. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
 5. [How To's](#how-tos)
 	1. [How do I insert a TOC?](#how-do-i-insert-a-toc)
 	2. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
@@ -24,13 +25,17 @@
 
 
 ## Next steps
-Get serial comms talking and FONA unit response\
-Populate this repo with work info about completed\
+Initialise FONA get SOC status, network status etc\
+Re-org this context to it better complies with the template\
+Populate this repo with info about completed steps\
 Get wifi dongle working so can us LAN dongle for other things!\
 Add docs and files for completed steps, directory for each?\
 Ugrade TOC script so it inserts TOC back into .md file and saves new version into scratch folder
 
 ## Completed
+### Get serial comms talking and FONA unit response\
+```/ruby/serial/serial_tests_tty2FONA.rb```
+
 ### Wire up a raspberry pi zero to FONA GPS/Comms module
 Add wiring diagram and notes on important pins.\
 
