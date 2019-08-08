@@ -9,7 +9,7 @@
 #-------------------------------------------------------------------------------
 #  Vs   Auth  Date    Comments
 #-------------------------------------------------------------------------------
-# 0.01  sf            Created
+# 0.01  sf    1Aug19  Created
 #-------------------------------------------------------------------------------
 # TODO
 #
@@ -17,7 +17,7 @@
 require 'rubygems'
 require 'fileutils' # catname   chmod   compare   copy   install   FileUtils.mkdir_p   move   safe_unlink   syscopy
 require 'date'   # DateTime::now
-
+require 'pp'
 
 # require 'serialport'
 # http://ruby-serialport.rubyforge.org/
@@ -128,7 +128,7 @@ end
 #
 #
 #                                        # SAPBR - Bearer profile settings 
-#AT+SAPBR=3,1,"Contype","GPRS"		# 3=Set bearer parameters, Contype=Internet connection type
+#AT+SAPBR=3,1,"Contype","GPRS"		 # 3=Set bearer parameters, Contype=Internet connection type
 #                    OK                  # Value=GPRS
 #
 #AT+SAPBR=1,1                            # Open bearer - profile 1
@@ -150,7 +150,115 @@ end
 #
 #
 #                    
-AT_HANDSHAKE = ['AT','OK']
+AT_HANDSHAKE          = 'AT'
+AT_SIGNAL_STRENGTH    = 'AT+CSQ'
+AT_VERBOSE_ERRORS_ON  = 'AT+CMEE=2'
+AT_BATTERY_STATE      = 'AT+CBC'
+AT_HARDWARE_VS        = 'ATI'
+AT_IMEI_NUMBER        = 'AT+CCID'
+AT_WHICH_NETWORK      = 'AT+COPS?'
+AT_AVAILABLE_CREDIT   = ''
+AT_AVAILABLE_DATA     = ''
+
+AT_IS_GNS_POWER_ON      = 'AT+CGNSPWR?'
+AT_POWER_ON_GNS_MODULE  = 'AT+CGNSPWR=1'
+AT_POWER_OFF_GNS_MODULE = 'AT+CGNSPWR=0'
+AT_SET_BEARER_PROFILE   = 'AT+SAPBR=3,1,"Contype","GPRS"'
+AT_OPEN_BEARER_PROFILE  = 'AT+SAPBR=1,1'
+AT_CLOSE_BEARER_PROFILE = 'AT+SAPBR=0,1'
+AT_LOCATE_WITH_GPS      = 'AT+CGNSINF'
+AT_LOCATE_W_GSM_MASTS   = 'AT+CIPGSMLOC=1,1'
+AT_IP_ADDRESS           = 'AT+SAPBR=2,1'
+AT_DEFINE_NMEA_SENTENCE = 'AT+CGNSSEQ=RMC'      #< check if needed - GPS format spec?
+AT_ = ''
+
+# +CGNSINF: 1,1,20170304024139.000,51.111583,-2.457220,91.400,1.57,320.5,1,,1.7,1.9,0.9,,9,5,,,30,,
+
+## format
+#See GPS doc for sequence - needs honing!
+#+CGNSINF:
+#1,                  <GNSS run status>,
+#1,                  <Fix status>,
+#2017 02 19 0146 04.000, <UTC date & Time>,
+#51.111462,          <Latitude>,
+#-2.457305,          <Longitude>,
+#99.300,             <MSL Altitude>,
+#0.35,               <Speed Over Ground>,        ??
+#212.6,              <Course Over Ground>,       ??
+#1,                  <Fix Mode>,
+#,                   <Reserved1>,
+#1.6,                <HDOP>,
+#1.9,                <PDOP>,
+#0.9,                <VDOP>,
+#,                   <Reserved2>,
+#13,                 <GNSS Satellites in View>,
+#6,                  <GNSS Satellites Used>,
+#,                   <GLONASS Satellites Used>,
+#,                   <Reserved3>,
+#31,                 <C/N0 max>,
+#,                   <HPA>, 
+#                    <VPA>
+#                    
+## Date/Time: yyyyMMddhh mmss.sss	1980 01 06 00  2747.000
+
+SEQUENCE_SYSTEM_CHECK = [AT_HANDSHAKE,
+                         AT_VERBOSE_ERRORS_ON,
+                         AT_HARDWARE_VS,
+                         AT_IS_GNS_POWER_ON,
+                         AT_SIGNAL_STRENGTH,
+                         AT_BATTERY_STATE,
+                         AT_IMEI_NUMBER,
+                         AT_WHICH_NETWORK]
+
+def process_system_check(transactions_in_sequence)
+  info = {}
+  
+
+  transactions_in_sequence.each { |command_response|
+    
+    #split into lines - remove \r \n etc
+    response_set = command_response.split(/$/).collect{|l| l.strip}
+    
+    puts "--------------------------\\\n#{command_response}#{pp response_set}\n--------------------------/"
+    
+    case response_set[0]
+    #when AT_HANDSHAKE
+    #  info[:handshake] = response_set[1]
+    #  
+    #when AT_VERBOSE_ERRORS_ON
+    #  info[:] = response_set[1]
+      
+    when AT_HARDWARE_VS
+      info[:hw_version] = response_set[1]
+      
+    when AT_IS_GNS_POWER_ON
+      info[:power] = response_set[1].sub('+CGNSPWR: ','')
+      
+    when AT_SIGNAL_STRENGTH
+      info[:signal_strength] = response_set[1].sub('+CSQ: ','')
+      
+    when AT_BATTERY_STATE
+      response_set[1].sub!('+CBC: ','')
+      info[:is_charging] = response_set[1].split(',')[0]
+      info[:percent] = response_set[1].split(',')[1]
+      info[:mili_volts] = response_set[1].split(',')[2]
+      
+    when AT_IMEI_NUMBER
+      info[:imei] = response_set[1]
+      
+    when AT_WHICH_NETWORK
+      response_set[1] =~ /\"(.*?)\"/      #+COPS: 0,0,"O2"
+      info[:network] = $1
+      
+    end
+  }
+  
+  pp info
+  
+  info                       
+end
+
+
 # - - - - - - - - - - - - - - - - - - - - - - - -
 # take array containing command sequence
 # - - - - - - - - - - - - - - - - - - - - - - - -
@@ -229,22 +337,270 @@ end
 puts "Serial test running #{DateTime.now}"
 
 counter = 0
+
+transaction_array= []
+
 while (true)
 
   puts "\\mainloop start - - - - - "
   
-  reply = send_command serialport,'AT'
+  SEQUENCE_SYSTEM_CHECK.each { |command|
+    
+    reply = send_command serialport,command
 
-  puts ">------------------------------------->\n#{reply}< - - <"
+    transaction_array << reply
 
-  puts "snooozing . . . "  
+    puts ">------------------------------------->\n#{reply}< - - <"
+    
+  }
+      
+  #puts "snooozing . . . "  
+  #
+  #sleep(4)
+  #
+  #puts "slept. . . "  
 
-  sleep(4)
+  pp transaction_array
   
-  puts "slept. . . "  
+  process_system_check transaction_array
+  
+  break
 
 end
-  
-
 
 exit
+
+
+# OUTPUT LOOKS LIKE
+#
+#pi@rpi_T:~/scripts $ ./serial_tests_tty2FONA_v0.1.rb 
+#Serial test running 2019-08-07T09:43:26+00:00
+#\mainloop start - - - - - 
+#--------------------------\
+#w:'AT' r:1 <
+#wrote: 4bytes
+#r:0:
+#r:<
+#r:9:
+#r:AT
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+CMEE=2' r:1 <
+#wrote: 11bytes
+#r:0:
+#r:<
+#r:16:
+#r:AT+CMEE=2
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+CMEE=2
+#OK
+#< - - <
+#--------------------------\
+#w:'ATI' r:1 <
+#wrote: 5bytes
+#r:0:
+#r:<
+#r:27:
+#r:ATI
+#SIM808 R14.18
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#ATI
+#SIM808 R14.18
+#
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+CGNSPWR?' r:1 <
+#wrote: 13bytes
+#r:0:
+#r:<
+#r:33:
+#r:AT+CGNSPWR?
+#+CGNSPWR: 0
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+CGNSPWR?
+#+CGNSPWR: 0
+#
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+CSQ' r:1 <
+#wrote: 8bytes
+#r:0:
+#r:<
+#r:26:
+#r:AT+CSQ
+#+CSQ: 5,0
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+CSQ
+#+CSQ: 5,0
+#
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+CBC' r:1 <
+#wrote: 8bytes
+#r:0:
+#r:<
+#r:32:
+#r:AT+CBC
+#+CBC: 0,97,4177
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+CBC
+#+CBC: 0,97,4177
+#
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+CCID' r:1 <
+#wrote: 9bytes
+#r:0:
+#r:<
+#r:38:
+#r:AT+CCID
+#8944****************
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+CCID
+#8944****************
+#
+#OK
+#< - - <
+#--------------------------\
+#w:'AT+COPS?' r:1 <
+#wrote: 10bytes
+#r:0:
+#r:<
+#r:40:
+#r:AT+COPS?
+#+COPS: 0,0,"T-Mobile"
+#
+#OK
+#<
+#vr:Fixnum - rx
+#vr:Fixnum - tx
+#--------------------------/
+#>------------------------------------->
+#AT+COPS?
+#+COPS: 0,0,"T-Mobile"
+#
+#OK
+#< - - <
+#["AT\r\r\nOK\r\n",
+# "AT+CMEE=2\r\r\nOK\r\n",
+# "ATI\r\r\nSIM808 R14.18\r\n\r\nOK\r\n",
+# "AT+CGNSPWR?\r\r\n+CGNSPWR: 0\r\n\r\nOK\r\n",
+# "AT+CSQ\r\r\n+CSQ: 5,0\r\n\r\nOK\r\n",
+# "AT+CBC\r\r\n+CBC: 0,97,4177\r\n\r\nOK\r\n",
+# "AT+CCID\r\r\n8944****************\r\n\r\nOK\r\n",
+# "AT+COPS?\r\r\n+COPS: 0,0,\"T-Mobile\"\r\n\r\nOK\r\n"]
+#["AT", "OK", ""]
+#--------------------------\
+#AT
+#OK
+#["AT", "OK", ""]
+#--------------------------/
+#["AT+CMEE=2", "OK", ""]
+#--------------------------\
+#AT+CMEE=2
+#OK
+#["AT+CMEE=2", "OK", ""]
+#--------------------------/
+#["ATI", "SIM808 R14.18", "", "OK", ""]
+#--------------------------\
+#ATI
+#SIM808 R14.18
+#
+#OK
+#["ATI", "SIM808 R14.18", "", "OK", ""]
+#--------------------------/
+#["AT+CGNSPWR?", "+CGNSPWR: 0", "", "OK", ""]
+#--------------------------\
+#AT+CGNSPWR?
+#+CGNSPWR: 0
+#
+#OK
+#["AT+CGNSPWR?", "+CGNSPWR: 0", "", "OK", ""]
+#--------------------------/
+#["AT+CSQ", "+CSQ: 5,0", "", "OK", ""]
+#--------------------------\
+#AT+CSQ
+#+CSQ: 5,0
+#
+#OK
+#["AT+CSQ", "+CSQ: 5,0", "", "OK", ""]
+#--------------------------/
+#["AT+CBC", "+CBC: 0,97,4177", "", "OK", ""]
+#--------------------------\
+#AT+CBC
+#+CBC: 0,97,4177
+#
+#OK
+#["AT+CBC", "+CBC: 0,97,4177", "", "OK", ""]
+#--------------------------/
+#["AT+CCID", "8944****************", "", "OK", ""]
+#--------------------------\
+#AT+CCID
+#8944****************
+#
+#OK
+#["AT+CCID", "8944****************", "", "OK", ""]
+#--------------------------/
+#["AT+COPS?", "+COPS: 0,0,\"T-Mobile\"", "", "OK", ""]
+#--------------------------\
+#AT+COPS?
+#+COPS: 0,0,"T-Mobile"
+#
+#OK
+#["AT+COPS?", "+COPS: 0,0,\"T-Mobile\"", "", "OK", ""]
+#--------------------------/
+#{:hw_version=>"SIM808 R14.18",
+# :power=>"0",
+# :signal_strength=>"5,0",
+# :is_charging=>"0",
+# :percent=>"97",
+# :mili_volts=>"4177",         
+# :imei=>"8944****************",
+# :network=>"T-Mobile"}
