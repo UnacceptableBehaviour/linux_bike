@@ -1,9 +1,9 @@
 # Context
-## Status: Initialise FONA get SOC status, network status etc
-[AMBER]
+## Status: AT+SAPBR=1,1 +CME ERROR: operation not allowed problem
+[RED]
 
 ## Contents
-1. [Status: Initialise FONA get SOC status, network status etc](#status-initialise-fona-get-soc-status-network-status-etc)
+1. [Status: AT+SAPBR=1,1 +CME ERROR: operation not allowed problem](#status-atsapbr11-cme-error-operation-not-allowed-problem)
 2. [Contents](#contents)
 3. [Next steps](#next-steps)
 4. [Completed](#completed)
@@ -25,7 +25,7 @@
 
 
 ## Next steps
-Initialise FONA get SOC status, network status etc\
+Fix SIM login issuse: ‘AT+SAPBR=1,1 +CME ERROR: operation not allowed problem’\
 Re-org this context to it better complies with the template\
 Populate this repo with info about completed steps\
 Get wifi dongle working so can us LAN dongle for other things!\
@@ -34,6 +34,7 @@ Ugrade TOC script so it inserts TOC back into .md file and saves new version int
 
 ## Completed
 ### Get serial comms talking and FONA unit response\
+2019.Aug.02 - Initialise FONA get SOC status, network status etc [08b977d14e12..f7ff2ffa81ea]\
 ```/ruby/serial/serial_tests_tty2FONA.rb```
 
 ### Wire up a raspberry pi zero to FONA GPS/Comms module
