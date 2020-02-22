@@ -70,6 +70,7 @@ $ spe                                       # venv for python scrips
 $ create_TOC_for_md.py                      # run script
                                             # paste output into .md file TOC
 ```
+Available here: [create_TOC_for_md.py](https://github.com/UnacceptableBehaviour/python_scripts/blob/master/create_TOC_for_md.py)  
 
 
 ## TIPS
