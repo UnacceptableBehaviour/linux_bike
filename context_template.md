@@ -26,15 +26,14 @@ Action 2 - on Critical Path\
 Action 3 etc\
 
 
-## Completed
-2019.Jul.31 - TLA - Create Context Template - Move to bottom?
-
-
 ## Questions / Barriers
 ### How do we pull load info from the sheduler, are there OS hooks?\
 ### Can personality emerge for a set of competing algorithms?\
 ### What is the best way to achieve hyper focus?\
 
+
+## Completed
+2019.Jul.31 - TLA - Create Context Template - Move to bottom?
 
 
 
