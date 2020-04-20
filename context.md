@@ -15,8 +15,9 @@
 	6. [Create simple linux platform allow ruby/python and SSH (use a raspberry pi - rpi)](#create-simple-linux-platform-allow-rubypython-and-ssh-use-a-raspberry-pi--rpi)
 	7. [Install os on rpi & make it visible on network, and ssh in.](#install-os-on-rpi--make-it-visible-on-network-and-ssh-in)
 5. [How To's](#how-tos)
-	1. [How do I insert a TOC?](#how-do-i-insert-a-toc)
-	2. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
+    1. [How to setup wifi dongle for wirless access / headless (wifiless piZero)](#how-to-setup-wifi-dongle-for-wirless-access--headless-wifiless-pizero)
+    2. [How do I insert a TOC?](#how-do-i-insert-a-toc)
+    3. [How do I auto generate TOC?](#how-do-i-auto-generate-toc)
 6. [Q's & Barriers](#qs--barriers)
 7. [TIPS](#tips)
 8. [REFERENCES](#references)
@@ -63,6 +64,26 @@ Doc about setting up the rpi for remote development\
 
 
 ## How To's
+### How to setup wifi dongle for wirless access / headless (wifiless piZero)
+Connect wired LAN adapter (using USB LAN dongle), SSH into rpi
+> sudo iwlist wlan0 scan                                # csan for local wifi networks
+> sudo iwlist wlan0 scan | grep ESSID           # display SSIDs
+> sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+```
+country=GB
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+ssid="CRUDCRUD1984"
+psk="********"
+}
+```
+> sudo apt-get install netatalk                      # use AFP to make visible in Finder
+> sudo shutdown now -r                              # or reboot
+
+
+
 ### How do I insert a TOC?
 To creat a link to a chapter in MD:
 ```
